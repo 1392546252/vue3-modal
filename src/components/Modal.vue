@@ -1,5 +1,25 @@
 <template>
-
+    <div
+        class="modal-mask"
+        v-show="show">
+        <div
+            class="ui-modal"
+        >
+            <header class="header">
+                <h1>{{ headerText }}</h1>
+                <a href="javascript:;">&times;</a>
+            </header>
+            <article class="content">
+                <p>{{ contentText }}</p>
+            </article>
+            <div 
+                class="btn-group"
+                v-if="btnGroupShow">
+                <button class="btn btn-confirm">{{ confirmText }}</button>
+                <button class="btn btn-cancel">{{ cancelText }}</button>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script setup>
@@ -32,7 +52,7 @@
         },
         contentText: {
             type: String,
-            default: '',
+            default: 'modal content modal content',
         },
         contentTextColor: {
             type: String,
@@ -53,6 +73,10 @@
         cancelText: {
             type: String,
             default: 'cancel',
+        },
+        btnGroupShow: {
+            type: Boolean,
+            default: true,
         },
     })
 
@@ -75,5 +99,18 @@
 </script>
 
 <style scoped>
-
+    .modal-mask {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,.5);
+    }
+    .ui-modal {
+            position:fixed;
+            left: 50%;
+            overflow: hidden;
+            background-color: #fff;
+        }
 </style>
